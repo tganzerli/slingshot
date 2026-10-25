@@ -11,7 +11,7 @@
 /// `rollback` / `close` and the errors those transitions raise.
 library;
 
-import 'package:slingshot_core/slingshot_core.dart';
+import 'package:slingshot/slingshot.dart';
 import 'package:test/test.dart';
 
 /// Runs the battery for one driver.

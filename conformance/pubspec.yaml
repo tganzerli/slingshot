@@ -11,16 +11,13 @@ description: >
 version: 1.0.0
 publish_to: none
 
-repository: https://github.com/tganzerli/slingshot_core
+repository: https://github.com/tganzerli/slingshot
 
 environment:
   sdk: ^3.6.0
 
 dependencies:
-  slingshot_core:
-    git:
-      url: https://github.com/tganzerli/slingshot_core
-      ref: v1.0.2
+  slingshot: ^1.0.3
   # Regular, not dev: this package *is* test code. It never reaches an end
   # consumer, because it only ever appears as a dev_dependency of a driver.
   test: ^1.25.0

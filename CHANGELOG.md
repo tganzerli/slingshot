@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.3
+
+First release on pub.dev. Renamed from `slingshot_core` to `slingshot`, the name of the family: there is no
+umbrella package, each database has its own driver package that depends on this one. The repository moved with
+it. No API change: only the package name, the library import (`package:slingshot/slingshot.dart`) and the
+dependency key change. The conformance battery, kept in the repository and not published, takes this package from pub.dev too.
+
 ## 1.0.2
 
 Renamed from `dart_db_connector_core` to `slingshot_core`; the repository moved with it. No API change: only the package

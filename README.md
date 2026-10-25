@@ -1,6 +1,6 @@
-# slingshot_core
+# slingshot
 
-The contract shared by every `slingshot` driver package. It carries no driver and links no client
+The contract shared by every driver package of the slingshot family (`slingshot_postgres` and the others). It carries no driver and links no client
 library; it holds only what every driver must agree on:
 
 - `UnitOfWork<E>`: the transaction lifecycle, generic in the driver's own executor type. The shape of a query is
@@ -14,14 +14,11 @@ library; it holds only what every driver must agree on:
 Applications normally do not depend on this package directly; they get it through a driver such as
 [`slingshot_postgres`](https://github.com/tganzerli/slingshot_postgres).
 
-**Experimental, not on pub.dev yet.** Drivers depend on it by `git` reference to a tag:
+Experimental (pre-1.0 drivers). A driver depends on it from pub.dev:
 
 ```yaml
 dependencies:
-  slingshot_core:
-    git:
-      url: https://github.com/tganzerli/slingshot_core
-      ref: v1.0.2
+  slingshot: ^1.0.3
 ```
 
 ## Versioning
@@ -32,9 +29,10 @@ on an existing one, is a MINOR release.
 
 ## Conformance battery
 
-`conformance/` holds `slingshot_conformance`, the executable half of the contract: each driver imports it
-as a `dev_dependency` from the same tag and runs `runUnitOfWorkConformance` against its own database. It is not
-meant to be published.
+The [repository](https://github.com/tganzerli/slingshot) also holds `slingshot_conformance` in `conformance/`,
+the executable half of the contract: each driver imports it as a `dev_dependency` from the tag that matches its
+`slingshot` version and runs `runUnitOfWorkConformance` against its own database. It is not published on
+pub.dev, so it is not part of this package's archive.
 
 ## License
 

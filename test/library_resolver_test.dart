@@ -8,7 +8,7 @@ library;
 
 import 'dart:io';
 
-import 'package:slingshot_core/slingshot_core.dart';
+import 'package:slingshot/slingshot.dart';
 import 'package:test/test.dart';
 
 void main() {

@@ -1,4 +1,4 @@
-/// The vertical contract shared by every `slingshot` driver package.
+/// The vertical contract shared by every driver package of the slingshot family.
 ///
 /// This package carries no driver and links no client library. It holds only
 /// what every driver must agree on:

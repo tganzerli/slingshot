@@ -1,12 +1,15 @@
-name: slingshot_core
+name: slingshot
 description: >
-  The vertical contract shared by every slingshot driver package:
+  The vertical contract shared by every driver package of the slingshot family:
   the transaction lifecycle, the repository interface, the error types, and
   the native library resolver. Carries no driver and links no client library.
-version: 1.0.2
-publish_to: none
+version: 1.0.3
 
-repository: https://github.com/tganzerli/slingshot_core
+repository: https://github.com/tganzerli/slingshot
+topics:
+  - database
+  - ffi
+  - sql
 
 environment:
   sdk: ^3.6.0
