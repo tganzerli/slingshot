@@ -1,12 +1,12 @@
-name: dart_db_connector_core
+name: slingshot_core
 description: >
-  The vertical contract shared by every dart_db_connector driver package:
+  The vertical contract shared by every slingshot driver package:
   the transaction lifecycle, the repository interface, the error types, and
   the native library resolver. Carries no driver and links no client library.
-version: 1.0.1
+version: 1.0.2
 publish_to: none
 
-repository: https://github.com/tganzerli/dart_db_connector_core
+repository: https://github.com/tganzerli/slingshot_core
 
 environment:
   sdk: ^3.6.0

@@ -4,23 +4,23 @@
 # `dev_dependencies` are not resolved by whoever installs a driver. When the
 # packages move to their own public repositories this directory travels with
 # the core, so one tag versions the contract and the battery that checks it.
-name: dart_db_connector_conformance
+name: slingshot_conformance
 description: >
-  Conformance battery for the dart_db_connector vertical contract. Drivers
+  Conformance battery for the slingshot vertical contract. Drivers
   import it as a dev_dependency and run it against their own database.
 version: 1.0.0
 publish_to: none
 
-repository: https://github.com/tganzerli/dart_db_connector_core
+repository: https://github.com/tganzerli/slingshot_core
 
 environment:
   sdk: ^3.6.0
 
 dependencies:
-  dart_db_connector_core:
+  slingshot_core:
     git:
-      url: https://github.com/tganzerli/dart_db_connector_core
-      ref: v1.0.1
+      url: https://github.com/tganzerli/slingshot_core
+      ref: v1.0.2
   # Regular, not dev: this package *is* test code. It never reaches an end
   # consumer, because it only ever appears as a dev_dependency of a driver.
   test: ^1.25.0

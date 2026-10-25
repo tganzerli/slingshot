@@ -1,4 +1,4 @@
-/// The vertical contract shared by every `dart_db_connector` driver package.
+/// The vertical contract shared by every `slingshot` driver package.
 ///
 /// This package carries no driver and links no client library. It holds only
 /// what every driver must agree on:

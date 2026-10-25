@@ -58,7 +58,7 @@ const int _k32BitMask = 0xFFFFFFFF;
 
   if (minor < expectedMinor) {
     stderr.writeln(
-      '[dart_db_connector] WARNING: linked $libraryLabel reports MINOR=$minor '
+      '[slingshot] WARNING: linked $libraryLabel reports MINOR=$minor '
       'but the Dart package expects MINOR>=$expectedMinor. Some features may '
       'be unavailable; consider rebuilding ($buildHint).',
     );

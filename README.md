@@ -1,6 +1,6 @@
-# dart_db_connector_core
+# slingshot_core
 
-The contract shared by every `dart_db_connector` driver package. It carries no driver and links no client
+The contract shared by every `slingshot` driver package. It carries no driver and links no client
 library; it holds only what every driver must agree on:
 
 - `UnitOfWork<E>`: the transaction lifecycle, generic in the driver's own executor type. The shape of a query is
@@ -12,16 +12,16 @@ library; it holds only what every driver must agree on:
   ABI.
 
 Applications normally do not depend on this package directly; they get it through a driver such as
-[`dart_db_connector_postgres`](https://github.com/tganzerli/dart_db_connector_postgres).
+[`slingshot_postgres`](https://github.com/tganzerli/slingshot_postgres).
 
 **Experimental, not on pub.dev yet.** Drivers depend on it by `git` reference to a tag:
 
 ```yaml
 dependencies:
-  dart_db_connector_core:
+  slingshot_core:
     git:
-      url: https://github.com/tganzerli/dart_db_connector_core
-      ref: v1.0.1
+      url: https://github.com/tganzerli/slingshot_core
+      ref: v1.0.2
 ```
 
 ## Versioning
@@ -32,7 +32,7 @@ on an existing one, is a MINOR release.
 
 ## Conformance battery
 
-`conformance/` holds `dart_db_connector_conformance`, the executable half of the contract: each driver imports it
+`conformance/` holds `slingshot_conformance`, the executable half of the contract: each driver imports it
 as a `dev_dependency` from the same tag and runs `runUnitOfWorkConformance` against its own database. It is not
 meant to be published.
 
