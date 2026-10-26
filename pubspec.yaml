@@ -1,9 +1,8 @@
 name: slingshot
 description: >
-  The vertical contract shared by every driver package of the slingshot family:
-  the transaction lifecycle, the repository interface, the error types, and
-  the native library resolver. Carries no driver and links no client library.
-version: 1.0.3
+  Shared contract for the slingshot database drivers for Dart: transaction
+  lifecycle, repository interface, error types and native library loading.
+version: 1.0.4
 
 repository: https://github.com/tganzerli/slingshot
 topics:

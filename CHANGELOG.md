@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.4
+
+Documentation only: README rewritten, a runnable example (`example/main.dart`, an in-memory driver), dartdoc on
+the error types, shorter pubspec description. No API change.
+
 ## 1.0.3
 
 First release on pub.dev. Renamed from `slingshot_core` to `slingshot`, the name of the family: there is no

@@ -13,6 +13,7 @@ library;
 /// before the transaction is open. Wraps Dart's [StateError] for
 /// `is`/`catch` compatibility with generic state-machine handling.
 class TransactionStateError extends StateError {
+  /// Creates the error with a description of the illegal transition.
   TransactionStateError(super.message);
 }
 
@@ -25,13 +26,18 @@ class TransactionStateError extends StateError {
 /// left in an undefined state — most callers should `rollback()` the
 /// transaction (or release + reopen the pool) before retrying.
 class QueryFailedException implements Exception {
+  /// The statement that failed.
   final String sql;
+
+  /// The client library's diagnostic, when it gave one.
   final String? serverMessage;
 
   /// Native error code when available (e.g. libmysqlclient `mysql_errno`).
   /// `null` for failures with no numeric code (dispatch refusals, PG paths).
   final int? code;
 
+  /// Creates the exception for [sql], with the client's [serverMessage] and
+  /// optional numeric [code].
   QueryFailedException(this.sql, this.serverMessage, {this.code});
 
   @override
@@ -55,8 +61,13 @@ class QueryFailedException implements Exception {
 ///
 /// Added in ABI MAJOR 1.
 class QueryTimeoutException implements Exception {
+  /// The statement that ran out of time.
   final String sql;
+
+  /// The budget it exceeded.
   final Duration timeout;
+
+  /// Creates the exception for [sql] after [timeout].
   QueryTimeoutException(this.sql, this.timeout);
 
   @override
@@ -100,6 +111,7 @@ class ConnectionLostException implements Exception {
   /// this pool slot when the failure was surfaced.
   final bool reconnected;
 
+  /// Creates the exception, with the in-flight [sql] when known.
   const ConnectionLostException({this.sql, this.reconnected = false});
 
   @override
