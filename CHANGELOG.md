@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.5
+
+- The native library resolver also checks `<exe dir>/../lib/<file>`, the
+  `dart build cli` bundle layout, right after the executable's own directory.
+  A build hook (such as `slingshot_postgres_assets`) that bundles the library
+  is found without copying files or setting the environment variable.
+
 ## 1.0.4
 
 Documentation only: README rewritten, a runnable example (`example/main.dart`, an in-memory driver), dartdoc on

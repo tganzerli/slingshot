@@ -23,6 +23,11 @@
 ///      `~/.pub-cache/...` next to the exe, the `.so` lives here). This is the
 ///      layout pre-built releases produce. Headless Docker deployments target
 ///      either form.
+///    - `dirname(dirname(Platform.resolvedExecutable))/lib/<fileName>` (the
+///      `dart build cli` bundle: `bundle/bin/<exe>` next to `bundle/lib/`,
+///      where a build hook such as `slingshot_postgres_assets` puts the
+///      library as a code asset). Under `dart run` this points into the SDK,
+///      which holds no driver library, so the check is a harmless miss.
 /// 3. **Package URI** `package:<packageName>/_native/<os>-<arch>/<fileName>`
 ///    resolved via `Isolate.resolvePackageUriSync`. Reserved for releases that
 ///    ship pre-built binaries via CI. Works in JIT (`dart run`, `dart test`);
@@ -82,10 +87,15 @@ ffi.DynamicLibrary openDriverLibrary({
   if (exeDir != null) {
     candidates.add('$exeDir/$fileName');
     candidates.add('$exeDir/lib/_native/$platformId/$fileName');
+    final bundleDir = _parentDirectory(exeDir);
+    if (bundleDir != null) {
+      candidates.add('$bundleDir/lib/$fileName');
+    }
   }
 
   // Path #3 — package URI for the bundled native asset.
-  final pkgPath = _resolvePackageNativeLibPath(packageName, platformId, fileName);
+  final pkgPath =
+      _resolvePackageNativeLibPath(packageName, platformId, fileName);
   if (pkgPath != null) {
     candidates.add(pkgPath);
   }
@@ -145,6 +155,13 @@ String? _executableDirectory() {
   } catch (_) {
     return null;
   }
+}
+
+/// Returns the parent of [dir], or null when [dir] has no parent component.
+String? _parentDirectory(String dir) {
+  final lastSep = dir.lastIndexOf(Platform.pathSeparator);
+  if (lastSep <= 0) return null;
+  return dir.substring(0, lastSep);
 }
 
 /// Resolves `package:<packageName>/_native/<os>-<arch>/<fileName>` to a real

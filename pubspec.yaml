@@ -2,7 +2,7 @@ name: slingshot
 description: >
   Shared contract for the slingshot database drivers for Dart: transaction
   lifecycle, repository interface, error types and native library loading.
-version: 1.0.4
+version: 1.0.5
 
 repository: https://github.com/tganzerli/slingshot
 topics:

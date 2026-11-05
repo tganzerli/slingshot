@@ -69,10 +69,40 @@ void main() {
         throwsA(
           isA<StateError>()
               .having((e) => e.message, 'message', contains('some/build/dir'))
-              .having((e) => e.message, 'message', contains('build it like this'))
+              .having(
+                  (e) => e.message, 'message', contains('build it like this'))
               .having((e) => e.message, 'message',
                   contains('DART_DB_CONNECTOR_NO_SUCH_ENV_VAR')),
         ),
+      );
+    });
+
+    test('checks the dart build cli bundle right after the executable', () {
+      const names = (
+        macOS: 'libnope.dylib',
+        linux: 'libnope.so',
+        windows: 'nope.dll',
+      );
+      final fileName = libraryFileName(names);
+      final exeDir = File(Platform.resolvedExecutable).parent;
+      final flat = '${exeDir.path}/$fileName';
+      final bundle = '${exeDir.parent.path}/lib/$fileName';
+      expect(
+        () => openDriverLibrary(
+          names: names,
+          envOverride: 'DART_DB_CONNECTOR_NO_SUCH_ENV_VAR',
+          packageName: 'no_such_package',
+        ),
+        throwsA(isA<StateError>().having(
+            (e) => e.message,
+            'message',
+            predicate<String>((m) {
+              final b = m.indexOf(bundle);
+              // Listed, after the flat candidate and before the system path.
+              return m.contains(flat) &&
+                  b > m.indexOf(flat) &&
+                  (Platform.isWindows || b < m.indexOf('/usr/local/lib/'));
+            }, 'lists $bundle between $flat and /usr/local/lib'))),
       );
     });
   });
